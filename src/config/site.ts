@@ -51,7 +51,7 @@ export const site: SiteConfig = {
   },
 
   motto: {
-    text: "Àìtàn kì í kọ ilẹ̀ kí lẹ",
+    text: "Àìtàn ko kọ'lẹ̀kílẹ",
     // Leave empty to show the motto on its own. Add an English rendering here
     // if the family would like one displayed beneath it.
     translation: "",
