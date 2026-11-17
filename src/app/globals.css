@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   HEIRLOOM EDITORIAL — design tokens
+   Night (forest-black) carries cinema; Ivory carries story; Wine carries
+   ceremony; Gold is light, used sparingly as hairlines and glow; Emerald
+   is the quiet counter-note.
+--------------------------------------------------------------------------- */
+@theme {
+  --color-night: #0a120f;
+  --color-night-2: #101b17;
+  --color-wine: #3f0b17;
+  --color-burgundy: #6a1528;
+  --color-claret: #8c1d34;
+  --color-gold: #c9a45c;
+  --color-gold-bright: #ead08f;
+  --color-gold-deep: #8f6f2f;
+  --color-emerald: #0e4535;
+  --color-emerald-2: #135b46;
+  --color-ivory: #f6efe1;
+  --color-cream: #ebe0c9;
+  --color-ink: #1c1411;
+
+  --font-display: "Fraunces Variable", "Fraunces", Georgia, serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Manrope Variable", "Manrope", system-ui, sans-serif;
+
+  --ease-silk: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-night);
+  -webkit-text-size-adjust: 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ivory);
+  background: var(--color-night);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--color-gold); color: var(--color-night); }
+
+:focus-visible {
+  outline: 1.5px solid var(--color-gold-bright);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Display type — Fraunces with soft optical sizing */
+.font-display {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 30, "WONK" 0;
+  font-optical-sizing: auto;
+}
+.font-display-wonk { font-variation-settings: "SOFT" 100, "WONK" 1; }
+
+/* Small caps label used across the site */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Gold foil text */
+.foil {
+  background: linear-gradient(100deg, #8f6f2f 0%, #ead08f 22%, #c9a45c 40%, #fff1c9 52%, #c9a45c 64%, #8f6f2f 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: foil 9s var(--ease-silk) infinite alternate;
+}
+@keyframes foil { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+
+/* Hairline rules */
+.hairline { height: 1px; background: linear-gradient(90deg, transparent, var(--color-gold) 15%, var(--color-gold) 85%, transparent); opacity: .55; }
+
+/* Paper grain for ivory sections */
+.paper {
+  background-color: var(--color-ivory);
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(201,164,92,.14), transparent 55%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.3  0 0 0 0 0.2  0 0 0 0 0.1  0 0 0 .07 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  color: var(--color-ink);
+}
+
+/* Film grain overlay for dark sections */
+.grain::after {
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .045 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  mix-blend-mode: overlay;
+}
+
+/* Adire-inspired pattern (original geometric line-work, drawn in gold) */
+.adire {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'><g fill='none' stroke='%23c9a45c' stroke-width='.8' opacity='.5'><circle cx='28' cy='28' r='9'/><circle cx='28' cy='28' r='3'/><path d='M0 0l10 10M56 0L46 10M0 56l10-10M56 56L46 46'/><path d='M28 0v8M28 48v8M0 28h8M48 28h8'/></g><g fill='%23c9a45c' opacity='.55'><circle cx='14' cy='14' r='1'/><circle cx='42' cy='14' r='1'/><circle cx='14' cy='42' r='1'/><circle cx='42' cy='42' r='1'/></g></svg>");
+}
+
+/* Glass */
+.glass {
+  background: linear-gradient(140deg, rgba(246,239,225,.09), rgba(246,239,225,.03));
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  border: 1px solid rgba(234,208,143,.18);
+}
+
+/* Buttons */
+.btn-gold {
+  position: relative; overflow: hidden; isolation: isolate;
+  display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .25rem .75rem;
+  padding: 1.05rem 1.75rem;
+  background: linear-gradient(120deg, #b8924a, #ead08f 45%, #c9a45c);
+  color: var(--color-night);
+  font-weight: 700; font-size: .75rem; letter-spacing: .24em; text-transform: uppercase;
+  transition: transform .5s var(--ease-silk), box-shadow .5s var(--ease-silk);
+  box-shadow: 0 10px 40px -12px rgba(234,208,143,.55);
+}
+.btn-gold::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.65) 50%, transparent 70%);
+  transform: translateX(-120%); transition: transform .9s var(--ease-silk);
+}
+.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 18px 50px -12px rgba(234,208,143,.7); }
+.btn-gold:hover::before { transform: translateX(120%); }
+.btn-gold[aria-disabled="true"] { filter: grayscale(.5); opacity: .7; cursor: not-allowed; transform: none; }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: .75rem;
+  padding: 1.05rem 1.75rem;
+  border: 1px solid rgba(234,208,143,.45);
+  color: var(--color-gold-bright);
+  font-weight: 600; font-size: .75rem; letter-spacing: .24em; text-transform: uppercase;
+  transition: background .5s var(--ease-silk), color .5s var(--ease-silk), border-color .5s;
+}
+.btn-ghost:hover { background: rgba(234,208,143,.1); border-color: var(--color-gold-bright); }
+
+/* Slow rotation for the seal */
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 120s linear infinite; }
+.spin-slower-rev { animation: spin-slow 200s linear infinite reverse; }
+
+/* Hide scrollbars on horizontal rails */
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
