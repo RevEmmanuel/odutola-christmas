@@ -21,7 +21,16 @@ import type { SiteConfig } from "./types";
 export const site: SiteConfig = {
   name: "Odutola Christmas 2026",
   shortName: "OC26",
-  url: "https://odutolachristmas.com", // ← replace with the live domain (used for SEO/OG tags)
+  /**
+   * The live address — WhatsApp/Facebook/X need it to find the share image.
+   * Set NEXT_PUBLIC_SITE_URL (e.g. https://odutolachristmas.com) in your host's
+   * environment variables. On Vercel it is detected automatically if not set.
+   */
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : "http://localhost:3000"),
   description:
     "Three Days. One Family. A Lifetime of Memories. The official Christmas celebration of the family of Chief Dr. Timothy Adeola Odutola — December 24–26, 2026.",
   host: "The Family of Chief Dr. Timothy Adeola Odutola Christmas Planning Committee",

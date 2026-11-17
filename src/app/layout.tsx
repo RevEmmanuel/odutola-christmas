@@ -14,12 +14,13 @@ export const metadata: Metadata = {
   applicationName: site.name,
   openGraph: {
     type: "website",
+    url: "/",
     title: `${site.name} — ${site.hero.tagline}`,
     description: site.description,
     siteName: site.name,
-    images: [{ url: "/brand/og.jpg", width: 1200, height: 630, alt: "Odutola family crest" }],
+    images: [{ url: "/brand/share.jpg", width: 1200, height: 630, type: "image/jpeg", alt: "Odutola Christmas 2026 — December 24–26, 2026" }],
   },
-  twitter: { card: "summary_large_image", title: site.name, description: site.description, images: ["/brand/og.jpg"] },
+  twitter: { card: "summary_large_image", title: site.name, description: site.description, images: ["/brand/share.jpg"] },
 };
 
 export const viewport: Viewport = { themeColor: "#0a120f", colorScheme: "dark" };
